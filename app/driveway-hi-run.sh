@@ -12,11 +12,12 @@ name=t t. ! queue ! \
 capsfilter caps="application/x-rtp,media=video,height=1920,width=1080" ! \
 queue ! rtph264depay ! h264parse ! queue ! \
 rtspclientsink protocols=tcp latency=0 \
-location=rtsp://192.168.21.40:8554/driveway_hi \
+location=rtsp://192.168.21.41:8554/driveway_hi \
 name=pay t. ! queue ! \
 capsfilter caps="application/x-rtp,media=audio,clock-rate=16000,encoding-name=L16" ! \
 rtpL16depay ! queue ! audioconvert ! queue ! \
 volume volume=1.5 ! audioresample ! \
+audio/x-raw,channels=1,rate=16000 ! \
 opusenc audio-type=2051 bandwidth=-1000 \
 bitrate=64000 frame-size=40 ! queue ! \
 pay. -e > gstream-dr-hi.log
