@@ -1,40 +1,44 @@
 version: '3.3'
 services:
-    gst-driveway-hi:
-        image: gst-driveway-hi
+    gst-by-hi:
+        image: bittles999/ubuntu-gstreamer-wyze-script
+#        image: bittles999/gst-wyze
         networks:
             - host
         volumes:
             - '/etc/localtime:/etc/localtime:ro'
-        container_name: 'gst-driveway-hi'
+            - './app/backyard-hi-run.sh:/app/run.sh'
+        container_name: 'gst-by-hi'
         restart: unless-stopped
-
-    gst-driveway-lo:
-        image: gst-driveway-lo
+    gst-by-lo:
+        image: bittles999/ubuntu-gstreamer-wyze-script
+#        image: bittles999/gst-wyze
         networks:
             - host
         volumes:
             - '/etc/localtime:/etc/localtime:ro'
-        container_name: 'gst-driveway-lo'
+            - './app/backyard-lo-run.sh:/app/run.sh'
+        container_name: 'gst-by-lo'
         restart: unless-stopped
-
-    gst-backyard-hi:
-        image: gst-backyard-hi
+    gst-dr-hi:
+#        image: bittles999/gst-wyze
+        image: bittles999/ubuntu-gstreamer-wyze-script
         networks:
             - host
         volumes:
             - '/etc/localtime:/etc/localtime:ro'
-        container_name: 'gst-backyard-hi'
+            - './app/driveway-hi-run.sh:/app/run.sh'
+        container_name: 'gst-dr-hi'
         restart: unless-stopped
-
-    gst-backyard-lo:
-        image: gst-backyard-lo
+    gst-dr-lo:
+        image: bittles999/ubuntu-gstreamer-wyze-script
+#        image: bittles999/gst-wyze
         networks:
             - host
         volumes:
             - '/etc/localtime:/etc/localtime:ro'
-        container_name: 'gst-backyard-lo'
+            - './app/driveway-lo-run.sh:/app/run.sh'
+        container_name: 'gst-dr-lo'
         restart: unless-stopped
-
 networks:
     host:
