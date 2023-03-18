@@ -18,5 +18,5 @@ capsfilter caps="application/x-rtp,media=audio,clock-rate=8000,encoding-name=L16
 rtpL16depay ! queue ! audioconvert ! queue ! \
 volume volume=1.5 ! audioresample ! \
 opusenc audio-type=2051 bandwidth=-1000 \
-bitrate=64000 frame-size=60 ! queue ! \
+bitrate=64000 ! queue ! \
 pay. > gstream-dr-lo.log
